@@ -11,15 +11,15 @@ namespace App3.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewItemPage : ContentPage
     {
-        public Item Item { get; set; }
+        public Offer Item { get; set; }
 
         public NewItemPage()
         {
             InitializeComponent();
 
-            Item = new Item
+            Item = new Offer
             {
-                Text = "Item name",
+                Title = "Offer name",
                 Description = "This is an item description."
             };
 

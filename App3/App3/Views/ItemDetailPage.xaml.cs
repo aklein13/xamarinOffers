@@ -24,9 +24,9 @@ namespace App3.Views
         {
             InitializeComponent();
 
-            var item = new Item
+            var item = new Offer
             {
-                Text = "Item 1",
+                Title = "Offer 1",
                 Description = "This is an item description."
             };
 
