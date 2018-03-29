@@ -7,6 +7,8 @@ using System.Json;
 using App3.Models;
 using System.Net;
 using System.IO;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 [assembly: Xamarin.Forms.Dependency(typeof(App3.Services.MockDataStore))]
 namespace App3.Services
@@ -14,7 +16,8 @@ namespace App3.Services
     public class MockDataStore : IDataStore<Offer>
     {
         List<Offer> items;
-        private string ApiUrl = "http://api.voxm.live/api/1/";
+        private string ApiUrl = "http://api.dolenta.com/api/v1/offers/";
+        private string DolentaCookie = "__cfduid=db155fb4089091ce1c09673520eba7b991522173309; csrftoken=2YTiWapX6vAnuyk2NBMPdZhMnTFtYsnurd0RaXULwDA1V4lsBuBbJkH41Bi1L5D0; sessionid=yhubqhwqo8tnm32qnxnah7fypzo6e01f; _ga=GA1.2.1448340676.1522173397";
 
         public MockDataStore()
         {
@@ -73,8 +76,10 @@ namespace App3.Services
         public async Task<JsonValue> FetchOffersAsync(string city)
         {
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(ApiUrl));
+            request.Headers["Cookie"] = DolentaCookie;
             request.ContentType = "application/json";
             request.Method = "GET";
+            //ServicePointManager.ServerCertificateValidationCallback += (o, certificate, chain, errors) => true;
 
             using (WebResponse response = await request.GetResponseAsync())
             {
