@@ -21,7 +21,6 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                          
                             <StackLayout Padding="10">
                                 <Image Source="{Binding Images}"/>
                                 <Label Text="{Binding Title}" 
