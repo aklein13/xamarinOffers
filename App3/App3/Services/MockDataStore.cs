@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Json;
 
 using App3.Models;
+using System.Net;
+using System.IO;
 
 [assembly: Xamarin.Forms.Dependency(typeof(App3.Services.MockDataStore))]
 namespace App3.Services
@@ -11,6 +14,7 @@ namespace App3.Services
     public class MockDataStore : IDataStore<Offer>
     {
         List<Offer> items;
+        private string ApiUrl = "http://api.voxm.live/api/1/";
 
         public MockDataStore()
         {
@@ -64,6 +68,24 @@ namespace App3.Services
         public async Task<IEnumerable<Offer>> GetItemsAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(items);
+        }
+
+        public async Task<JsonValue> FetchOffersAsync(string city)
+        {
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(ApiUrl));
+            request.ContentType = "application/json";
+            request.Method = "GET";
+
+            using (WebResponse response = await request.GetResponseAsync())
+            {
+                using (Stream stream = response.GetResponseStream())
+                {
+                    JsonValue jsonDoc = await Task.Run(() => JsonObject.Load(stream));
+                    Console.Out.WriteLine("Response: {0}", jsonDoc.ToString());
+                    await Task.FromResult(jsonDoc);
+                }
+            }
+            return await Task.FromResult(false);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace App3.ViewModels
 
         public ItemsViewModel()
         {
-            Title = "Browse";
+            Title = "Oferty";
             Items = new ObservableCollection<Offer>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
@@ -40,6 +40,8 @@ namespace App3.ViewModels
             {
                 Items.Clear();
                 var items = await DataStore.GetItemsAsync(true);
+                await DataStore.FetchOffersAsync();
+                
                 foreach (var item in items)
                 {
                     Items.Add(item);
