@@ -9,7 +9,6 @@ using System.Net;
 using System.IO;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
-
 [assembly: Xamarin.Forms.Dependency(typeof(App3.Services.MockDataStore))]
 namespace App3.Services
 {
@@ -79,18 +78,16 @@ namespace App3.Services
             request.Headers["Cookie"] = DolentaCookie;
             request.ContentType = "application/json";
             request.Method = "GET";
-            //ServicePointManager.ServerCertificateValidationCallback += (o, certificate, chain, errors) => true;
 
             using (WebResponse response = await request.GetResponseAsync())
             {
                 using (Stream stream = response.GetResponseStream())
                 {
                     JsonValue jsonDoc = await Task.Run(() => JsonObject.Load(stream));
-                    Console.Out.WriteLine("Response: {0}", jsonDoc.ToString());
-                    await Task.FromResult(jsonDoc);
+                    //Console.Out.WriteLine("Response: {0}", jsonDoc.ToString());
+                    return await Task.FromResult(jsonDoc);
                 }
             }
-            return await Task.FromResult(false);
         }
     }
 }

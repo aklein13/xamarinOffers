@@ -7,6 +7,8 @@
         <Image Source="{Binding Item.Images}"/>
         <Label Text="Text:" FontSize="Medium" />
         <Label Text="{Binding Item.Title}" FontSize="Big"/>
+        <Label Text="Price:" FontSize="Medium" />
+        <Label Text="{Binding Item.Price, StringFormat='{0} zł'}" FontSize="Medium"/>
         <Label Text="Description:" FontSize="Medium" />
         <Label Text="{Binding Item.Description}" FontSize="Small"/>
     </StackLayout>

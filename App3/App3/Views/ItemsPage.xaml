@@ -27,7 +27,7 @@
                        LineBreakMode="NoWrap" 
                        Style="{DynamicResource ListItemTextStyle}" 
                        FontSize="16" />
-                                <Label Text="{Binding Description}" 
+                                <Label Text="{Binding Price, StringFormat='{0} zł'}" 
                        LineBreakMode="NoWrap"
                        Style="{DynamicResource ListItemDetailTextStyle}"
                        FontSize="13" />

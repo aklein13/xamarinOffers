@@ -7,6 +7,7 @@ using Xamarin.Forms;
 
 using App3.Models;
 using App3.Views;
+using System.Json;
 
 namespace App3.ViewModels
 {
@@ -39,13 +40,29 @@ namespace App3.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                await DataStore.FetchOffersAsync();
-                
-                foreach (var item in items)
+                //var items = await DataStore.GetItemsAsync(true);
+                var offers = await DataStore.FetchOffersAsync();
+                string sampleUrl = "https://otodompl-imagestmp.akamaized.net/images_otodompl/23505315_3_1280x1024_wygodne-mieszkanie-na-osiedlu-aquarius-w-sopocie-mieszkania_rev011.jpg";
+                foreach (JsonObject offer in offers["results"])
                 {
-                    Items.Add(item);
+                    JsonValue raw = offer["raw"];
+                    //Console.WriteLine(raw.ToString());
+                    Offer tempOffer = new Offer
+                    {
+                        Id = raw["offer_id"],
+                        Title = raw["title"],
+                        Price = raw["price"],
+                        City = raw["city"],
+                        Description = raw["description"],
+                        Images = sampleUrl,
+                    };
+                    Items.Add(tempOffer);
                 }
+                
+                //foreach (var item in items)
+                //{
+                //    Items.Add(item);
+                //}
             }
             catch (Exception ex)
             {
