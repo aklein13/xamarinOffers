@@ -53,6 +53,7 @@ namespace App3.ViewModels
                         Title = raw["title"],
                         Price = raw["price"],
                         City = raw["city"],
+                        Url = raw["url"],
                         Description = raw["description"],
                         Images = sampleUrl,
                     };

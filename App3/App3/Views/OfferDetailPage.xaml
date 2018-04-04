@@ -7,11 +7,16 @@
         <ToolbarItem Text="Skopiuj do schowka" Clicked="CopyToClipboard" />
         <ToolbarItem Text="Otwórz w przeglądarce" Clicked="OpenInBrowser" />
     </ContentPage.ToolbarItems>
-    <StackLayout Spacing="20" Padding="15">
-        <Image Source="{Binding Item.Images}"/>
-        <Label Text="{Binding Item.Title}" FontSize="Large"/>
-        <Label Text="{Binding Item.Price, StringFormat='{0} zł'}" FontSize="Medium"/>
-        <Label Text="Opis:" FontSize="Medium" />
-        <Label Text="{Binding Item.Description}" FontSize="Small"/>
-    </StackLayout>
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout Spacing="20" Padding="15">
+            <Image Source="{Binding Item.Images}"/>
+            <Label Text="{Binding Item.Title}" FontSize="Large"/>
+            <Label Text="{Binding Item.City}" FontSize="Medium"/>
+            <Label Text="{Binding Item.Price, StringFormat='{0} zł'}" FontSize="Medium"/>
+            <Label Text="Opis:" FontSize="Medium" />
+            <Label Text="{Binding Item.Description}" FontSize="Small"/>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

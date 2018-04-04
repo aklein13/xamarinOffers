@@ -9,6 +9,7 @@ namespace App3.Models
         public string Description { get; set; }
         public int Price { get; set; }
         public string City { get; set; }
+        public string Url { get; set; }
         public string Images{ get; set; }
         public bool IsFavourite { get; set; }
     }
