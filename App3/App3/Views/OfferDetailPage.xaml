@@ -2,14 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App3.Views.ItemDetailPage"
-             Title="{Binding Title}">
+             >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Skopiuj do schowka" Clicked="CopyToClipboard" />
+        <ToolbarItem Text="Otwórz w przeglądarce" Clicked="OpenInBrowser" />
+    </ContentPage.ToolbarItems>
     <StackLayout Spacing="20" Padding="15">
         <Image Source="{Binding Item.Images}"/>
-        <Label Text="Text:" FontSize="Medium" />
-        <Label Text="{Binding Item.Title}" FontSize="Big"/>
-        <Label Text="Price:" FontSize="Medium" />
+        <Label Text="{Binding Item.Title}" FontSize="Large"/>
         <Label Text="{Binding Item.Price, StringFormat='{0} zł'}" FontSize="Medium"/>
-        <Label Text="Description:" FontSize="Medium" />
+        <Label Text="Opis:" FontSize="Medium" />
         <Label Text="{Binding Item.Description}" FontSize="Small"/>
     </StackLayout>
 </ContentPage>

@@ -33,5 +33,13 @@ namespace App3.Views
             viewModel = new ItemDetailViewModel(item);
             BindingContext = viewModel;
         }
+        async void OpenInBrowser(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+        }
+        async void CopyToClipboard(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+        }
     }
 }
