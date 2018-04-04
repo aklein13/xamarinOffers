@@ -5,6 +5,8 @@ using Xamarin.Forms.Xaml;
 
 using App3.Models;
 using App3.ViewModels;
+using System.Threading.Tasks;
+using Plugin.Share;
 
 namespace App3.Views
 {
@@ -38,10 +40,10 @@ namespace App3.Views
             string url =this.viewModel.Item.Url;
             Device.OpenUri(new Uri(url));
         }
-        void CopyToClipboard(object sender, EventArgs e)
+        public Task<bool> CopyToClipboard(string text)
         {
             string url = this.viewModel.Item.Url;
-            Console.WriteLine(url);
+            return CrossShare.Current.SetClipboardText(url);
         }
     }
 }
