@@ -4,8 +4,9 @@
              x:Class="App3.Views.ItemDetailPage"
              >
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Skopiuj do schowka" Clicked="CopyToClipboard" />
-        <ToolbarItem Text="Otwórz w przeglądarce" Clicked="OpenInBrowser" />
+        <ToolbarItem Text="Skopiuj" Clicked="CopyToClipboard" />
+        <ToolbarItem Text="Otwórz" Clicked="OpenInBrowser" />
+        <ToolbarItem Text="{Binding FavText}" Clicked="FavOffer" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>

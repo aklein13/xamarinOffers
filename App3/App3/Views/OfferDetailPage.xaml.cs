@@ -35,15 +35,19 @@ namespace App3.Views
             viewModel = new ItemDetailViewModel(item);
             BindingContext = viewModel;
         }
-        void OpenInBrowser(object sender, EventArgs e)
+        public void OpenInBrowser()
         {
             string url =this.viewModel.Item.Url;
             Device.OpenUri(new Uri(url));
         }
-        public Task<bool> CopyToClipboard(string text)
+        public Task<bool> CopyToClipboard()
         {
             string url = this.viewModel.Item.Url;
             return CrossShare.Current.SetClipboardText(url);
+        }
+        public void FavOffer()
+        {
+            this.viewModel.Fav();
         }
     }
 }
