@@ -15,8 +15,10 @@ namespace App3.Services
     public class MockDataStore : IDataStore<Offer>
     {
         List<Offer> items;
-        private string ApiUrl = "http://api.dolenta.com/api/v1/offers/";
-        private string DolentaCookie = "__cfduid=db155fb4089091ce1c09673520eba7b991522173309; csrftoken=2YTiWapX6vAnuyk2NBMPdZhMnTFtYsnurd0RaXULwDA1V4lsBuBbJkH41Bi1L5D0; sessionid=yhubqhwqo8tnm32qnxnah7fypzo6e01f; _ga=GA1.2.1448340676.1522173397";
+        private string ApiUrl = "http://35.225.207.86:8000/api/v1/offers/";
+        //private string ApiUrl = "http://api.dolenta.com/api/v1/offers/";
+        private string DolentaCookie = "csrftoken=ADYZipSvraVjtUbf6B3qvUzJimtKqYICR6yZ0gP3B8Crt9dlRYp23UAsl6k2dR70; sessionid=nbv8fvxz0hdlax6mguxv6xiuek3nlr9m";
+        //private string DolentaCookie = "__cfduid=db155fb4089091ce1c09673520eba7b991522173309; csrftoken=2YTiWapX6vAnuyk2NBMPdZhMnTFtYsnurd0RaXULwDA1V4lsBuBbJkH41Bi1L5D0; sessionid=yhubqhwqo8tnm32qnxnah7fypzo6e01f; _ga=GA1.2.1448340676.1522173397";
 
         public MockDataStore()
         {
@@ -24,12 +26,7 @@ namespace App3.Services
             items = new List<Offer>();
             var mockItems = new List<Offer>
             {
-                new Offer { Id = Guid.NewGuid().ToString(), Title = "First item", Description="This is an item description.", Images=sampleUrl},
-                new Offer { Id = Guid.NewGuid().ToString(), Title = "Second item", Description="This is an item description.", Images=sampleUrl},
-                new Offer { Id = Guid.NewGuid().ToString(), Title = "Third item", Description="This is an item description.", Images=sampleUrl},
-                new Offer { Id = Guid.NewGuid().ToString(), Title = "Fourth item", Description="This is an item description.", Images=sampleUrl},
-                new Offer { Id = Guid.NewGuid().ToString(), Title = "Fifth item", Description="This is an item description.", Images=sampleUrl},
-                new Offer { Id = Guid.NewGuid().ToString(), Title = "Sixth item", Description="This is an item description.", Images=sampleUrl},
+                new Offer { Id = Guid.NewGuid().ToString(), Title = "First item", Description="This is an item description."},
             };
 
             foreach (var item in mockItems)

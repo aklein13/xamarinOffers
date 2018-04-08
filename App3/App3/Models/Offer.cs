@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace App3.Models
 {
@@ -10,7 +11,19 @@ namespace App3.Models
         public int Price { get; set; }
         public string City { get; set; }
         public string Url { get; set; }
-        public string Images{ get; set; }
+    
+        private string[] _Images = new string[25];
+        public string[] Images
+        {
+            get
+            {
+                return _Images;
+            }
+            set
+            {
+                _Images = value;
+            }
+        }
         public bool IsFavourite { get; set; }
     }
 }
