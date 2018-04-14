@@ -16,6 +16,7 @@
             Title="Wybierz miasto" 
             ItemsSource="{Binding CityList}"
             SelectedItem="{Binding City}"
+                SelectedIndexChanged="PickerItemSelected"
             />
             <ListView x:Name="ItemsListView" 
                 ItemsSource="{Binding Items}"
