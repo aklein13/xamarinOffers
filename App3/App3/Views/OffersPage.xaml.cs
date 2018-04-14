@@ -51,7 +51,7 @@ namespace App3.Views
         }
         public void PickerItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            viewModel
+            Console.WriteLine("PICKER");
         }
     }
 }
