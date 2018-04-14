@@ -49,7 +49,7 @@ namespace App3.Views
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
         }
-        public void PickerItemSelected(object sender, SelectedItemChangedEventArgs args)
+        public void PickerItemSelected()
         {
             Console.WriteLine("PICKER");
         }
