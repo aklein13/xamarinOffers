@@ -22,7 +22,8 @@ namespace App3.ViewModels
             Title = "Oferty";
             Items = new ObservableCollection<Offer>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
+            City = "Gdynia";
+            CityList = new List<string> { "Gdynia", "Sopot", "Gdańsk" };
             MessagingCenter.Subscribe<NewItemPage, Offer>(this, "AddItem", async (obj, item) =>
             {
                 var _item = item as Offer;

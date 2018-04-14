@@ -11,7 +11,7 @@
     <ContentPage.Content>
         <ScrollView>
         <StackLayout Spacing="20" Padding="15">
-            <Image Source="{Binding Item.Images[0]}"/>
+             <Image Source="{Binding Item.Images[0]}" Aspect="AspectFill"/>
             <Label Text="{Binding Item.Title}" FontSize="Large"/>
             <Label Text="{Binding Item.City}" FontSize="Medium"/>
             <Label Text="{Binding Item.Price, StringFormat='{0} zł'}" FontSize="Medium"/>

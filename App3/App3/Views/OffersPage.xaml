@@ -5,10 +5,18 @@
               Title="{Binding Title}"
              x:Name="BrowseItemsPage">
     <ContentPage.ToolbarItems>
+        
         <ToolbarItem Text="Ustawienia" Clicked="AddItem_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
+        
         <StackLayout>
+            <Picker 
+            x:Name="cities" 
+            Title="Wybierz miasto" 
+            ItemsSource="{Binding CityList}"
+            SelectedItem="{Binding City}"
+            />
             <ListView x:Name="ItemsListView" 
                 ItemsSource="{Binding Items}"
                 VerticalOptions="FillAndExpand"
@@ -22,7 +30,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="10">
-                                <Image Source="{Binding Images[0]}"/>
+                                <Image Source="{Binding Images[0]}" Aspect="AspectFill"/>
                                 <Label Text="{Binding Title}" 
                        LineBreakMode="NoWrap" 
                        Style="{DynamicResource ListItemTextStyle}" 

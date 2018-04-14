@@ -27,7 +27,18 @@ namespace App3.ViewModels
             get { return title; }
             set { SetProperty(ref title, value); }
         }
-
+        string city = string.Empty;
+        public string City
+        {
+            get { return title; }
+            set { SetProperty(ref title, value); }
+        }
+        List<string> cityList;
+        public List<string> CityList
+        {
+            get { return cityList; }
+            set { SetProperty(ref cityList, value); }
+        }
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName]string propertyName = "",
             Action onChanged = null)
