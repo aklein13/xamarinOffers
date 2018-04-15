@@ -9,6 +9,8 @@ using App3.Models;
 using App3.Views;
 using System.Json;
 using System.Collections.Generic;
+using PCLStorage;
+using Newtonsoft.Json;
 
 namespace App3.ViewModels
 {
@@ -41,23 +43,25 @@ namespace App3.ViewModels
             try
             {
                 Items.Clear();
-                //var items = await DataStore.GetItemsAsync(true);
-                var offers = await DataStore.FetchOffersAsync();
-                //string sampleUrl = "https://otodompl-imagestmp.akamaized.net/images_otodompl/23505315_3_1280x1024_wygodne-mieszkanie-na-osiedlu-aquarius-w-sopocie-mieszkania_rev011.jpg";
-                foreach (JsonObject offer in offers["results"])
+                IFolder rootFolder = FileSystem.Current.LocalStorage;
+                IFolder folder = await rootFolder.CreateFolderAsync("DolentaCache", CreationCollisionOption.OpenIfExists);
+                string fileName = "favourites.txt";
+                IFile file = await folder.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
+                string content = await file.ReadAllTextAsync();
+                List<Offer> Favs = new List<Offer>();
+                Console.WriteLine("Current fav state");
+                try
                 {
-                    JsonValue raw = offer["raw"];
-                    string[] imageArray = raw["images"].ToString().Replace("[", "").Replace("]", "").Replace("\\", "").Replace("\"", "").Split(',');
-                    Offer tempOffer = new Offer
-                    {
-                        Id = raw["offer_id"],
-                        Title = raw["title"],
-                        Price = raw["price"],
-                        City = raw["city"],
-                        Description = raw["description"],
-                        Images = imageArray,
-                    };
-                    Items.Add(tempOffer);
+                    Favs = JsonConvert.DeserializeObject<List<Offer>>(content);
+                }
+                catch (System.NullReferenceException)
+                {
+                    Console.WriteLine("Nie bylo");
+                    Favs = new List<Offer>();
+                }
+                foreach (Offer temp in Favs)
+                {
+                    Items.Add(temp);
                 }
             }
             catch (Exception ex)

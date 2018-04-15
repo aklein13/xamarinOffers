@@ -34,7 +34,7 @@ namespace App3.ViewModels
         {
             IFolder rootFolder = FileSystem.Current.LocalStorage;
             IFolder folder = await rootFolder.CreateFolderAsync("DolentaCache", CreationCollisionOption.OpenIfExists);
-            string fileName = "favourites1.txt";
+            string fileName = "favourites.txt";
             IFile file = await folder.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
             string content = await file.ReadAllTextAsync();
             List<Offer> Favs = new List<Offer>();
