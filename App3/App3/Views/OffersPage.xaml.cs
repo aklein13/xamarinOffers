@@ -31,7 +31,7 @@ namespace App3.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            await Navigation.PushModalAsync(new NavigationPage(new ItemDetailPage(new ItemDetailViewModel(item))));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
@@ -45,7 +45,7 @@ namespace App3.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
+            //BindingContext = viewModel = new ItemsViewModel();
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
         }
