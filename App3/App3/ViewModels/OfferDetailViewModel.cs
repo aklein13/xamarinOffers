@@ -38,7 +38,6 @@ namespace App3.ViewModels
             IFile file = await folder.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
             string content = await file.ReadAllTextAsync();
             List<Offer> Favs = new List<Offer>();
-            Console.WriteLine("Current fav state");
             try
             {
                 Favs = JsonConvert.DeserializeObject<List<Offer>>(content);
@@ -50,7 +49,6 @@ namespace App3.ViewModels
             }
             catch (System.NullReferenceException)
             {
-                Console.WriteLine("Nie bylo");
                 Favs = new List<Offer>();
             }
             

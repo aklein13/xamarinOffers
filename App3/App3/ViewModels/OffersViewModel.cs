@@ -9,6 +9,8 @@ using App3.Models;
 using App3.Views;
 using System.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using PCLStorage;
 
 namespace App3.ViewModels
 {
@@ -41,6 +43,21 @@ namespace App3.ViewModels
 
             try
             {
+                IFolder rootFolder = FileSystem.Current.LocalStorage;
+                IFolder folder = await rootFolder.CreateFolderAsync("DolentaCache", CreationCollisionOption.OpenIfExists);
+                string fileName = "favourites.txt";
+                IFile file = await folder.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
+                string content = await file.ReadAllTextAsync();
+                List<Offer> Favs = new List<Offer>();
+                try
+                {
+                    Favs = JsonConvert.DeserializeObject<List<Offer>>(content);
+                }
+                catch (System.NullReferenceException)
+                {
+                    Favs = new List<Offer>();
+                }
+
                 Items.Clear();
                 //var items = await DataStore.GetItemsAsync(true);
                 var offers = await DataStore.FetchOffersAsync();
@@ -60,6 +77,13 @@ namespace App3.ViewModels
                         Images = imageArray,
                     };
                     Items.Add(tempOffer);
+                    foreach (Offer fav in Favs)
+                    {
+                        if (tempOffer.Id == fav.Id)
+                        {
+                            tempOffer.IsFavourite = true;
+                        }
+                    }
                 }
                 
                 //foreach (var item in items)
