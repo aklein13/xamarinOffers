@@ -76,8 +76,6 @@ namespace App3.Services
             {
                 newUri += "?city=" + city;
             }
-            Console.WriteLine(newUri);
-            Console.WriteLine(city);
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(newUri));
             request.Headers["Cookie"] = ApiKey;
             request.ContentType = "application/json";
