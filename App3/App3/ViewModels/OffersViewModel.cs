@@ -18,12 +18,14 @@ namespace App3.ViewModels
     {
         public ObservableCollection<Offer> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
+        public Command FilterItemsCommand { get; set; }
 
         public ItemsViewModel()
         {
             Title = "Oferty";
             Items = new ObservableCollection<Offer>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            FilterItemsCommand = new Command(async () => await ExecuteLoadItemsCommand(true));
             City = "Gdynia";
             CityList = new List<string> { "Gdynia", "Sopot", "Gdańsk" };
             MessagingCenter.Subscribe<NewItemPage, Offer>(this, "AddItem", async (obj, item) =>
@@ -34,7 +36,7 @@ namespace App3.ViewModels
             });
         }
 
-        async Task ExecuteLoadItemsCommand()
+        async Task ExecuteLoadItemsCommand(bool ShouldFilter = false)
         {
             if (IsBusy)
                 return;
@@ -60,7 +62,8 @@ namespace App3.ViewModels
 
                 Items.Clear();
                 //var items = await DataStore.GetItemsAsync(true);
-                var offers = await DataStore.FetchOffersAsync();
+
+                var offers = await DataStore.FetchOffersAsync(ShouldFilter ? this.City : "None");
                 //string sampleUrl = "https://otodompl-imagestmp.akamaized.net/images_otodompl/23505315_3_1280x1024_wygodne-mieszkanie-na-osiedlu-aquarius-w-sopocie-mieszkania_rev011.jpg";
                 foreach (JsonObject offer in offers["results"])
                 {

@@ -17,8 +17,8 @@ namespace App3.Services
         List<Offer> items;
         private string ApiUrl = "http://35.225.207.86:8000/api/v1/offers/";
         //private string ApiUrl = "http://api.dolenta.com/api/v1/offers/";
-        private string DolentaCookie = "csrftoken=ADYZipSvraVjtUbf6B3qvUzJimtKqYICR6yZ0gP3B8Crt9dlRYp23UAsl6k2dR70; sessionid=nbv8fvxz0hdlax6mguxv6xiuek3nlr9m";
-        //private string DolentaCookie = "__cfduid=db155fb4089091ce1c09673520eba7b991522173309; csrftoken=2YTiWapX6vAnuyk2NBMPdZhMnTFtYsnurd0RaXULwDA1V4lsBuBbJkH41Bi1L5D0; sessionid=yhubqhwqo8tnm32qnxnah7fypzo6e01f; _ga=GA1.2.1448340676.1522173397";
+        private string ApiKey = "csrftoken=ADYZipSvraVjtUbf6B3qvUzJimtKqYICR6yZ0gP3B8Crt9dlRYp23UAsl6k2dR70; sessionid=nbv8fvxz0hdlax6mguxv6xiuek3nlr9m";
+        //private string ApiKey = "__cfduid=db155fb4089091ce1c09673520eba7b991522173309; csrftoken=2YTiWapX6vAnuyk2NBMPdZhMnTFtYsnurd0RaXULwDA1V4lsBuBbJkH41Bi1L5D0; sessionid=yhubqhwqo8tnm32qnxnah7fypzo6e01f; _ga=GA1.2.1448340676.1522173397";
 
         public MockDataStore()
         {
@@ -71,8 +71,15 @@ namespace App3.Services
 
         public async Task<JsonValue> FetchOffersAsync(string city)
         {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(ApiUrl));
-            request.Headers["Cookie"] = DolentaCookie;
+            string newUri = ApiUrl;
+            if (city != "None")
+            {
+                newUri += "?city=" + city;
+            }
+            Console.WriteLine(newUri);
+            Console.WriteLine(city);
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(newUri));
+            request.Headers["Cookie"] = ApiKey;
             request.ContentType = "application/json";
             request.Method = "GET";
 

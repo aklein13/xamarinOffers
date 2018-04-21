@@ -12,6 +12,6 @@ namespace App3.Services
         Task<bool> DeleteItemAsync(T item);
         Task<T> GetItemAsync(string id);
         Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
-        Task<JsonValue> FetchOffersAsync(string city = "");
+        Task<JsonValue> FetchOffersAsync(string city = "None");
     }
 }

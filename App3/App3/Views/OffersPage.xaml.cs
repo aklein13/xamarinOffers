@@ -51,7 +51,7 @@ namespace App3.Views
         }
         public void PickerItemSelected()
         {
-            Console.WriteLine("PICKER");
+            viewModel.FilterItemsCommand.Execute(null);
         }
     }
 }
