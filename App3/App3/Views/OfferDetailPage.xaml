@@ -4,7 +4,11 @@
              x:Class="App3.Views.ItemDetailPage"
              >
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Skopiuj" Clicked="CopyToClipboard" />
+        <ToolbarItem Text="Cofnij" Clicked="Back" />
+        <ToolbarItem Text=""/>
+        <ToolbarItem Text=""/>
+        <ToolbarItem Text=""/>
+        <ToolbarItem Text="Udostępnij" Clicked="CopyToClipboard" />
         <ToolbarItem Text="Otwórz" Clicked="OpenInBrowser" />
         <ToolbarItem Text="{Binding FavText}" Clicked="FavOffer" />
     </ContentPage.ToolbarItems>

@@ -7,6 +7,7 @@ using App3.Models;
 using App3.ViewModels;
 using System.Threading.Tasks;
 using Plugin.Share;
+using App3.Services;
 
 namespace App3.Views
 {
@@ -40,14 +41,19 @@ namespace App3.Views
             string url =this.viewModel.Item.Url;
             Device.OpenUri(new Uri(url));
         }
-        public Task<bool> CopyToClipboard()
+        async void CopyToClipboard()
         {
-            string url = this.viewModel.Item.Url;
-            return CrossShare.Current.SetClipboardText(url);
+            await DependencyService.Get<IShare>().ShareAsync(this.viewModel.Item);
+            //string url = this.viewModel.Item.Url;
+            //return CrossShare.Current.SetClipboardText(url);
         }
         public void FavOffer()
         {
             this.viewModel.Fav();
+        }
+        async void Back()
+        {
+            await Navigation.PopModalAsync();
         }
     }
 }

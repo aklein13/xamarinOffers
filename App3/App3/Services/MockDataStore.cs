@@ -17,7 +17,7 @@ namespace App3.Services
         List<Offer> items;
         private string ApiUrl = "http://35.225.207.86:8000/api/v1/offers/";
         //private string ApiUrl = "http://api.dolenta.com/api/v1/offers/";
-        private string ApiKey = "csrftoken=ADYZipSvraVjtUbf6B3qvUzJimtKqYICR6yZ0gP3B8Crt9dlRYp23UAsl6k2dR70; sessionid=nbv8fvxz0hdlax6mguxv6xiuek3nlr9m";
+        private string ApiKey = "csrftoken=FztzSbLtmjGLQcR3HXMGdM3BT0LdDgpf9bq02HIzWVchlaqzIvAUdNsmpjirfc16; sessionid=b9tw49rigwlvjufz2nst3et07yfbxgge";
         //private string ApiKey = "__cfduid=db155fb4089091ce1c09673520eba7b991522173309; csrftoken=2YTiWapX6vAnuyk2NBMPdZhMnTFtYsnurd0RaXULwDA1V4lsBuBbJkH41Bi1L5D0; sessionid=yhubqhwqo8tnm32qnxnah7fypzo6e01f; _ga=GA1.2.1448340676.1522173397";
 
         public MockDataStore()
