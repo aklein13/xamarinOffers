@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using App3.Models;
+using App3.Services;
 using Newtonsoft.Json;
 using PCLStorage;
+using Xamarin.Forms;
 
 namespace App3.ViewModels
 {
     public class ItemDetailViewModel : BaseViewModel
     {
         public Offer Item { get; set; }
+        public Command OpenInBrowserCommand { get; set; }
+        public Command FavItemCommand { get; set; }
+        public Command ShareItemCommand { get; set; }
         public string _favfext;
         public string FavText {
             get
@@ -23,8 +28,19 @@ namespace App3.ViewModels
             Title = item?.Title;
             Item = item;
             FavText = favText;
+            OpenInBrowserCommand = new Command(() => OpenInBrowser());
+            FavItemCommand = new Command(async() => await Fav());
+            ShareItemCommand = new Command(async () => await ShareItem());
         }
-        public async void Fav()
+        public async Task ShareItem()
+        {
+            await DependencyService.Get<IShare>().ShareAsync(this.Item);
+        }
+        public void OpenInBrowser()
+        {
+            Device.OpenUri(new Uri(this.Item.Url));
+        }
+        public async Task Fav()
         {
             this.Item.IsFavourite = !this.Item.IsFavourite;
             this.FavText = this.Item.IsFavourite ? "DEL" : "FAV";

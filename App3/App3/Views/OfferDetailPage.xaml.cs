@@ -22,34 +22,17 @@ namespace App3.Views
 
             BindingContext = this.viewModel = viewModel;
         }
-
-        public ItemDetailPage()
-        {
-            InitializeComponent();
-
-            var item = new Offer
-            {
-                Title = "Offer 1",
-                Description = "This is an item description."
-            };
-
-            viewModel = new ItemDetailViewModel(item);
-            BindingContext = viewModel;
-        }
         public void OpenInBrowser()
         {
-            string url =this.viewModel.Item.Url;
-            Device.OpenUri(new Uri(url));
+            this.viewModel.OpenInBrowserCommand.Execute(null);
         }
-        async void CopyToClipboard()
+        public void CopyToClipboard()
         {
-            await DependencyService.Get<IShare>().ShareAsync(this.viewModel.Item);
-            //string url = this.viewModel.Item.Url;
-            //return CrossShare.Current.SetClipboardText(url);
+            this.viewModel.ShareItemCommand.Execute(null);
         }
         public void FavOffer()
         {
-            this.viewModel.Fav();
+            this.viewModel.FavItemCommand.Execute(null);
         }
         async void Back()
         {

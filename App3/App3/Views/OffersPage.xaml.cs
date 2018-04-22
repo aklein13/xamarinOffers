@@ -30,10 +30,7 @@ namespace App3.Views
             var item = args.SelectedItem as Offer;
             if (item == null)
                 return;
-
             await Navigation.PushModalAsync(new NavigationPage(new ItemDetailPage(new ItemDetailViewModel(item))));
-
-            // Manually deselect item.
             ItemsListView.SelectedItem = null;
         }
 
