@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
 using App3.Models;
-using App3.Views;
 using App3.ViewModels;
 
 namespace App3.Views
@@ -21,7 +14,14 @@ namespace App3.Views
         public ItemsPage()
         {
             InitializeComponent();
-
+            MessagingCenter.Subscribe<object, string>(this, "Offer", (sender, arg) => {
+                try
+                {
+                    viewModel.City = arg;
+                    viewModel.FilterItemsCommand.Execute(null);
+                }
+                catch { }
+            });
             BindingContext = viewModel = new ItemsViewModel();
         }
 

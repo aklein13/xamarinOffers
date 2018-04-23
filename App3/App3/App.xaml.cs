@@ -1,6 +1,8 @@
 ﻿using System;
-
+using App3.Models;
 using App3.Views;
+using Newtonsoft.Json;
+using PCLStorage;
 using Xamarin.Forms;
 
 namespace App3
@@ -16,14 +18,31 @@ namespace App3
             MainPage = new MainPage();
         }
 
-		protected override void OnStart ()
+		protected override async void OnStart ()
 		{
-            Console.WriteLine("Start");
-		}
+            IFolder rootFolder = FileSystem.Current.LocalStorage;
+            IFolder folder = await rootFolder.CreateFolderAsync("DolentaCache", CreationCollisionOption.OpenIfExists);
+            string fileName = "previousCity.txt";
+            IFile file = await folder.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
+            string content = await file.ReadAllTextAsync();
+            if (content == "Gdynia" || content == "Sopot" || content == "Gdańsk")
+            {
+                MessagingCenter.Send<object, string>(this, "Offer", content);
+            }
+        }
 
-		protected override void OnSleep ()
+		protected override async void OnSleep ()
 		{
-			Console.WriteLine("Sleep");
+            if (Current.Properties.ContainsKey("previous"))
+            {
+                Console.WriteLine("Contains");
+                Console.WriteLine(Current.Properties["previous"]);
+                IFolder rootFolder = FileSystem.Current.LocalStorage;
+                IFolder folder = await rootFolder.CreateFolderAsync("DolentaCache", CreationCollisionOption.OpenIfExists);
+                IFile file = await folder.CreateFileAsync("previousCity.txt", CreationCollisionOption.ReplaceExisting);;
+                await file.WriteAllTextAsync(Current.Properties["previous"] as string);
+            }
+            Console.WriteLine("Sleep");
 		}
 
 		protected override void OnResume ()

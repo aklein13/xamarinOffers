@@ -38,6 +38,10 @@ namespace App3.ViewModels
 
         async Task ExecuteLoadItemsCommand(bool ShouldFilter = false)
         {
+            if (ShouldFilter)
+            {
+                Application.Current.Properties["previous"] = this.City;
+            }
             if (IsBusy)
                 return;
 
