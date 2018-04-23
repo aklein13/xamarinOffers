@@ -14,14 +14,6 @@ namespace App3.Views
         public ItemsPage()
         {
             InitializeComponent();
-            MessagingCenter.Subscribe<object, string>(this, "Offer", (sender, arg) => {
-                try
-                {
-                    viewModel.City = arg;
-                    viewModel.FilterItemsCommand.Execute(null);
-                }
-                catch { }
-            });
             BindingContext = viewModel = new ItemsViewModel();
         }
 
@@ -42,7 +34,6 @@ namespace App3.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            //BindingContext = viewModel = new ItemsViewModel();
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
         }

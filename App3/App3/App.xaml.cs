@@ -1,7 +1,5 @@
 ﻿using System;
-using App3.Models;
 using App3.Views;
-using Newtonsoft.Json;
 using PCLStorage;
 using Xamarin.Forms;
 
@@ -13,8 +11,6 @@ namespace App3
 		public App ()
 		{
 			InitializeComponent();
-
-
             MainPage = new MainPage();
         }
 
@@ -25,9 +21,9 @@ namespace App3
             string fileName = "previousCity.txt";
             IFile file = await folder.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
             string content = await file.ReadAllTextAsync();
-            if (content == "Gdynia" || content == "Sopot" || content == "Gdańsk")
+            if (content == "Sopot" || content == "Gdańsk")
             {
-                MessagingCenter.Send<object, string>(this, "Offer", content);
+                MessagingCenter.Send<object, string>(this, "City", content);
             }
         }
 
@@ -42,7 +38,6 @@ namespace App3
                 IFile file = await folder.CreateFileAsync("previousCity.txt", CreationCollisionOption.ReplaceExisting);;
                 await file.WriteAllTextAsync(Current.Properties["previous"] as string);
             }
-            Console.WriteLine("Sleep");
 		}
 
 		protected override void OnResume ()

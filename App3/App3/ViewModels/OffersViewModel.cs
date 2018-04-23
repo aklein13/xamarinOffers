@@ -34,6 +34,17 @@ namespace App3.ViewModels
                 Items.Add(_item);
                 await DataStore.AddItemAsync(_item);
             });
+            MessagingCenter.Subscribe<object, string>(this, "City", (sender, arg) => {
+                try
+                {
+                    if (arg != "Gdynia")
+                    {
+                        this.City = arg;
+                        FilterItemsCommand.Execute(true);
+                    }
+                }
+                catch { }
+            });
         }
 
         async Task ExecuteLoadItemsCommand(bool ShouldFilter = false)
@@ -43,7 +54,7 @@ namespace App3.ViewModels
                 Application.Current.Properties["previous"] = this.City;
             }
             if (IsBusy)
-                return;
+                await Task.Delay(500);
 
             IsBusy = true;
 
@@ -67,7 +78,7 @@ namespace App3.ViewModels
                 Items.Clear();
                 //var items = await DataStore.GetItemsAsync(true);
 
-                var offers = await DataStore.FetchOffersAsync(ShouldFilter ? this.City : "None");
+                var offers = await DataStore.FetchOffersAsync(this.City);
                 //string sampleUrl = "https://otodompl-imagestmp.akamaized.net/images_otodompl/23505315_3_1280x1024_wygodne-mieszkanie-na-osiedlu-aquarius-w-sopocie-mieszkania_rev011.jpg";
                 foreach (JsonObject offer in offers["results"])
                 {
