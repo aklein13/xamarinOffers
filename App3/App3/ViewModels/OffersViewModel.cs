@@ -70,7 +70,7 @@ namespace App3.ViewModels
                 {
                     Favs = JsonConvert.DeserializeObject<List<Offer>>(content);
                 }
-                catch (System.NullReferenceException)
+                catch (NullReferenceException)
                 {
                     Favs = new List<Offer>();
                 }
@@ -104,10 +104,6 @@ namespace App3.ViewModels
                     }
                 }
                 
-                //foreach (var item in items)
-                //{
-                //    Items.Add(item);
-                //}
             }
             catch (Exception ex)
             {
