@@ -37,7 +37,7 @@ namespace App3.ViewModels
             MessagingCenter.Subscribe<object, string>(this, "City", (sender, arg) => {
                 try
                 {
-                    if (arg != "Gdynia")
+                    if (arg != this.City)
                     {
                         this.City = arg;
                         FilterItemsCommand.Execute(true);
@@ -88,6 +88,8 @@ namespace App3.ViewModels
                         Title = raw["title"],
                         Price = raw["price"],
                         City = raw["city"],
+                        District = raw["district"],
+                        Rooms = raw["rooms"].ToString(),
                         Url = raw["url"],
                         Description = raw["description"],
                         Images = imageArray,

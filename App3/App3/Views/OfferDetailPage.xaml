@@ -16,9 +16,21 @@
         <StackLayout Spacing="20" Padding="15">
              <Image Source="{Binding Item.Images[0]}" Aspect="AspectFill"/>
             <Label Text="{Binding Item.Title}" FontSize="Large"/>
-            <Label Text="{Binding Item.City}" FontSize="Medium"/>
-            <Label Text="{Binding Item.Price, StringFormat='{0} zł'}" FontSize="Medium"/>
-            <Label Text="Opis:" FontSize="Medium" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="{Binding Item.City}" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+                    <Label Text="{Binding Item.District}" Grid.Row="0" Grid.Column="1" FontSize="Medium"/>
+                    <Label Text="{Binding Item.Price, StringFormat='{0} zł'}" FontSize="Medium" Grid.Row="1" Grid.Column="0"/>
+                    <Label Text="{Binding Item.Rooms, StringFormat='Pokoje: {0}'}" FontSize="Medium" Grid.Row="1" Grid.Column="1"/>
+                </Grid>
+                <Label Text="Opis:" FontSize="Medium" />
             <Label Text="{Binding Item.Description}" FontSize="Small"/>
         </StackLayout>
         </ScrollView>
