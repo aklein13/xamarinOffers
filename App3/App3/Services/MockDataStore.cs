@@ -20,7 +20,6 @@ namespace App3.Services
         
         public MockDataStore()
         {
-            //string sampleUrl = "https://otodompl-imagestmp.akamaized.net/images_otodompl/23505315_3_1280x1024_wygodne-mieszkanie-na-osiedlu-aquarius-w-sopocie-mieszkania_rev011.jpg";
             items = new List<Offer>();
             var mockItems = new List<Offer>
             {
@@ -84,7 +83,6 @@ namespace App3.Services
                 using (Stream stream = response.GetResponseStream())
                 {
                     JsonValue jsonDoc = await Task.Run(() => JsonObject.Load(stream));
-                    //Console.Out.WriteLine("Response: {0}", jsonDoc.ToString());
                     return await Task.FromResult(jsonDoc);
                 }
             }

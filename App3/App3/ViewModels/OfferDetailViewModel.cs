@@ -63,7 +63,7 @@ namespace App3.ViewModels
                         Favs.RemoveAt(i);
                 }
             }
-            catch (System.NullReferenceException)
+            catch (NullReferenceException)
             {
                 Favs = new List<Offer>();
             }

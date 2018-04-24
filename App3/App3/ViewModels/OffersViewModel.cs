@@ -76,10 +76,8 @@ namespace App3.ViewModels
                 }
 
                 Items.Clear();
-                //var items = await DataStore.GetItemsAsync(true);
 
                 var offers = await DataStore.FetchOffersAsync(this.City);
-                //string sampleUrl = "https://otodompl-imagestmp.akamaized.net/images_otodompl/23505315_3_1280x1024_wygodne-mieszkanie-na-osiedlu-aquarius-w-sopocie-mieszkania_rev011.jpg";
                 foreach (JsonObject offer in offers["results"])
                 {
                     JsonValue raw = offer["raw"];

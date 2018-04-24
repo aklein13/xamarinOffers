@@ -7,7 +7,6 @@ using Xamarin.Forms;
 
 using App3.Models;
 using App3.Views;
-using System.Json;
 using System.Collections.Generic;
 using PCLStorage;
 using Newtonsoft.Json;
