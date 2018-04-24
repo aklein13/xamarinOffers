@@ -7,9 +7,9 @@
         <ToolbarItem Text="Cofnij" Clicked="Back" />
         <ToolbarItem Text=""/>
         <ToolbarItem Text=""/>
-        <ToolbarItem Text="   Udostępnij" Clicked="CopyToClipboard" />
+        <ToolbarItem Text="    Udostępnij" Clicked="CopyToClipboard" />
         <ToolbarItem Text="Otwórz" Clicked="OpenInBrowser" />
-        <ToolbarItem Text="{Binding FavText}" Clicked="FavOffer" />
+        <ToolbarItem Text="{Binding FavText}" Clicked="FavOffer"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>

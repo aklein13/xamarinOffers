@@ -24,7 +24,7 @@ namespace App3.ViewModels
         }
         public ItemDetailViewModel(Offer item = null, string favText = "F")
         {
-            favText = item.IsFavourite ? "DEL" : "FAV";
+            favText = item.IsFavourite ? "★" : "☆";
             Title = item?.Title;
             Item = item;
             FavText = favText;
@@ -43,7 +43,7 @@ namespace App3.ViewModels
         public async Task Fav()
         {
             this.Item.IsFavourite = !this.Item.IsFavourite;
-            this.FavText = this.Item.IsFavourite ? "DEL" : "FAV";
+            this.FavText = this.Item.IsFavourite ? "★" : "☆";
             await FavStorage();
         }
         public async Task FavStorage()
