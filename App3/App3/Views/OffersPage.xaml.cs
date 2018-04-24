@@ -1,5 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using App3.Models;
 using App3.ViewModels;
@@ -10,7 +9,6 @@ namespace App3.Views
 	public partial class ItemsPage : ContentPage
 	{
         ItemsViewModel viewModel;
-
         public ItemsPage()
         {
             InitializeComponent();
@@ -25,12 +23,6 @@ namespace App3.Views
             await Navigation.PushModalAsync(new NavigationPage(new ItemDetailPage(new ItemDetailViewModel(item))));
             ItemsListView.SelectedItem = null;
         }
-
-        async void AddItem_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
-        }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();

@@ -1,13 +1,6 @@
-﻿using System;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
-using App3.Models;
 using App3.ViewModels;
-using System.Threading.Tasks;
-using Plugin.Share;
-using App3.Services;
 
 namespace App3.Views
 {
@@ -15,11 +8,9 @@ namespace App3.Views
 	public partial class ItemDetailPage : ContentPage
 	{
         ItemDetailViewModel viewModel;
-
         public ItemDetailPage(ItemDetailViewModel viewModel)
         {
             InitializeComponent();
-
             BindingContext = this.viewModel = viewModel;
         }
         public void OpenInBrowser()

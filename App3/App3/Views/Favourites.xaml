@@ -4,9 +4,6 @@
              x:Class="App3.Views.FavouritesPage"
               Title="{Binding Title}"
              x:Name="BrowseItemsPage">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Ustawienia" Clicked="AddItem_Clicked" />
-    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="FavouritesView" 

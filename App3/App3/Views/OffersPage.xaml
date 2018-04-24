@@ -4,12 +4,7 @@
              x:Class="App3.Views.ItemsPage"
               Title="Oferty"
              x:Name="BrowseItemsPage">
-    <ContentPage.ToolbarItems>
-        
-        <ToolbarItem Text="Ustawienia" Clicked="AddItem_Clicked" />
-    </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        
         <StackLayout>
             <Picker 
             x:Name="cities" 

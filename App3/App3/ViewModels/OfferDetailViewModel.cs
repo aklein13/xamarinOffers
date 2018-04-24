@@ -67,16 +67,10 @@ namespace App3.ViewModels
             {
                 Favs = new List<Offer>();
             }
-            
             if (this.Item.IsFavourite)
             {
                 Favs.Add(this.Item);
             }
-            foreach (Offer temp in Favs)
-            {
-                Console.WriteLine(temp.Title);
-            }
-
             file = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
             string json = JsonConvert.SerializeObject(Favs);
             await file.WriteAllTextAsync(json);

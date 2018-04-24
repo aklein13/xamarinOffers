@@ -8,7 +8,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using App3.Models;
-using App3.Views;
 using App3.ViewModels;
 
 namespace App3.Views
@@ -17,11 +16,9 @@ namespace App3.Views
     public partial class FavouritesPage : ContentPage
     {
         FavouritesViewModel viewModel;
-
         public FavouritesPage()
         {
             InitializeComponent();
-
             BindingContext = viewModel = new FavouritesViewModel();
         }
 
@@ -30,18 +27,9 @@ namespace App3.Views
             var item = args.SelectedItem as Offer;
             if (item == null)
                 return;
-
             await Navigation.PushModalAsync(new NavigationPage(new ItemDetailPage(new ItemDetailViewModel(item))));
-
-            // Manually deselect item.
             FavouritesView.SelectedItem = null;
         }
-
-        async void AddItem_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
-        }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();

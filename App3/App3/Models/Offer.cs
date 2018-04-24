@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace App3.Models
+﻿namespace App3.Models
 {
     public class Offer
     {
@@ -13,7 +10,6 @@ namespace App3.Models
         public string Url { get; set; }
         public string District { get; set; }
         public string Rooms { get; set; }
-    
         private string[] _Images = new string[25];
         public string[] Images
         {

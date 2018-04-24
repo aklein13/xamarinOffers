@@ -23,13 +23,6 @@ namespace App3.ViewModels
             Title = "Ulubione";
             Items = new ObservableCollection<Offer>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
-            MessagingCenter.Subscribe<NewItemPage, Offer>(this, "AddItem", async (obj, item) =>
-            {
-                var _item = item as Offer;
-                Items.Add(_item);
-                await DataStore.AddItemAsync(_item);
-            });
         }
 
         async Task ExecuteLoadItemsCommand()

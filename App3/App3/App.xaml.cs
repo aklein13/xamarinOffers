@@ -7,13 +7,11 @@ namespace App3
 {
 	public partial class App : Application
 	{
-
 		public App ()
 		{
 			InitializeComponent();
             MainPage = new MainPage();
         }
-
 		protected override async void OnStart ()
 		{
             IFolder rootFolder = FileSystem.Current.LocalStorage;
@@ -26,7 +24,6 @@ namespace App3
                 MessagingCenter.Send<object, string>(this, "City", content);
             }
         }
-
 		protected override async void OnSleep ()
 		{
             if (Current.Properties.ContainsKey("previous"))
@@ -39,7 +36,6 @@ namespace App3
                 await file.WriteAllTextAsync(Current.Properties["previous"] as string);
             }
 		}
-
 		protected override void OnResume ()
 		{
             Console.WriteLine("Resume");

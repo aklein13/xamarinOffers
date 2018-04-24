@@ -2,11 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
-
 using App3.Models;
-using App3.Views;
 using System.Json;
 using System.Collections.Generic;
 using Newtonsoft.Json;
@@ -28,12 +25,6 @@ namespace App3.ViewModels
             FilterItemsCommand = new Command(async () => await ExecuteLoadItemsCommand(true));
             City = "Gdynia";
             CityList = new List<string> { "Gdynia", "Sopot", "Gdańsk" };
-            MessagingCenter.Subscribe<NewItemPage, Offer>(this, "AddItem", async (obj, item) =>
-            {
-                var _item = item as Offer;
-                Items.Add(_item);
-                await DataStore.AddItemAsync(_item);
-            });
             MessagingCenter.Subscribe<object, string>(this, "City", (sender, arg) => {
                 try
                 {
@@ -55,9 +46,7 @@ namespace App3.ViewModels
             }
             if (IsBusy)
                 await Task.Delay(500);
-
             IsBusy = true;
-
             try
             {
                 IFolder rootFolder = FileSystem.Current.LocalStorage;
@@ -74,9 +63,7 @@ namespace App3.ViewModels
                 {
                     Favs = new List<Offer>();
                 }
-
                 Items.Clear();
-
                 var offers = await DataStore.FetchOffersAsync(this.City);
                 foreach (JsonObject offer in offers["results"])
                 {
@@ -103,7 +90,6 @@ namespace App3.ViewModels
                         }
                     }
                 }
-                
             }
             catch (Exception ex)
             {
